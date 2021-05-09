@@ -1,1 +1,2 @@
-python wsgi.py
+:: python wsgi.py
+flask run
