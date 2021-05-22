@@ -56,7 +56,6 @@ REPORTS = [
 ]
 
 
-# роут по урлу "/reports/..."
 @report.route("/")
 def report_list():
     return render_template("reports/list.html", reports=REPORTS)

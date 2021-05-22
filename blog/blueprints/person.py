@@ -17,7 +17,6 @@ PERSONS = {
 }
 
 
-# роуты по урлам "/persons/..."
 @person.route("/")
 def person_list():
     return render_template("persons/list.html", persons=PERSONS)
