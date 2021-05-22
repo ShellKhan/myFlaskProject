@@ -1,10 +1,14 @@
 from flask import Flask, render_template
-from blog.report.views import report
-from blog.user.views import user
+from .blueprints.report import report
+from .blueprints.person import person
+from .models.database import db
 
 
 def create_app() -> Flask:
     app = Flask(__name__)
+    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:////tmp/blog.db"
+    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+    db.init_app(app)
 
     @app.route("/")
     def index():
@@ -15,5 +19,5 @@ def create_app() -> Flask:
 
 
 def register_blueprints(app: Flask):
-    app.register_blueprint(user)
+    app.register_blueprint(person)
     app.register_blueprint(report)

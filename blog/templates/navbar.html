@@ -7,9 +7,9 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                {% for (endpoint, label) in [('user.user_list', 'Users'), ('report.report_list', 'Reports')] %}
+                {% for (endpoint, label) in [('person.person_list', 'Persons'), ('report.report_list', 'Reports')] %}
                     <a href="{{ url_for(endpoint) }}"
-                       class="nav-link {% if request.endpoint == endpoint -%}active{%- endif %}">
+                       class="nav-link {% if request.endpoint == endpoint %}active{% endif %}">
                         {{ label }}
                     </a>
                 {% endfor %}
