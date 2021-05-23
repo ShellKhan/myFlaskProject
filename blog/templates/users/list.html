@@ -3,10 +3,10 @@
 {% block title %}Users list{% endblock %}
 
 {% block content %}
-<h1>Users:</h1>
+<h1>Users</h1>
 <div>
     <ul>
-        {% for user in userss %}
+        {% for user in users %}
             <li>
                 <a href="{{ url_for('user.profile', pk=user.id) }}">
                     {{ user.email }}
