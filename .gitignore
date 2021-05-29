@@ -227,3 +227,6 @@ pip-selfcheck.json
 
 /bootstrap/
 /blog/db.sqlite
+/migrations/env.py
+/migrations/README
+/migrations/script.py.mako
