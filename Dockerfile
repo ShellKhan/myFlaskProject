@@ -6,8 +6,8 @@ COPY requirements.txt requirements.txt
 
 RUN pip install --no-cache -r requirements.txt
 
-COPY . /app
+COPY . .
 
 EXPOSE 5000
 
-CMD ["flask", "run"]
+ENTRYPOINT flask run --host=0.0.0.0
