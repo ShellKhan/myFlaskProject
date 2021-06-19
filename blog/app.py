@@ -43,5 +43,4 @@ def register_blueprints(app):
 
 
 def register_commands(app):
-    app.cli.add_command(commands.init_db)
     app.cli.add_command(commands.create_init_user)
