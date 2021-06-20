@@ -1,32 +1,23 @@
 {% extends 'base.html' %}
+{% from 'macros/form.html' import render_field %}
 
 {% block title %}Login page{% endblock %}
 
 {% block content %}
 <h1>Log in</h1>
-{% with messages = get_flashed_messages() %}
-    {% if messages %}
-        {% for message in messages %}
-            <div class="alert alert-danger" role="alert">
-                {{ message }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        {% endfor %}
+    {% if error %}
+        <div class="alert alert-danger">
+            {{ error }}
+        </div>
     {% endif %}
-{% endwith %}
 <div>
-    <form method="post" action="{{ url_for('auth.login_post') }}">
-        <div class="mb-3">
-            <label for="email" class="form-label">Email address</label>
-            <input type="email" class="form-control" id="email" name="email">
-        </div>
-        
-        <div class="mb-3">
-            <label for="password" class="form-label">Password</label>
-            <input type="password" class="form-control" id="password" name="password">
-        </div>
-        
-        <button type="submit" class="btn btn-primary">Login</button>
+    <form method="post">
+        {{ form.csrf_token }}
+        {% for field in ['email', 'password'] %}
+            {{ render_field(form[field]) }}
+        {% endfor%}
+        <!--button type="submit" class="btn btn-primary">Login</button-->
+        {{ form.submit(class="btn btn-primary") }}
     </form>
-</div>
+</div
 {% endblock %}
