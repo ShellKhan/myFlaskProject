@@ -1,5 +1,5 @@
 from flask import Flask, render_template
-from .instruments import db, login_manager, migrate
+from .instruments import db, login_manager, migrate, csrf
 from .models.user import User
 from . import commands
 
@@ -21,6 +21,7 @@ def create_app() -> Flask:
 def register_instruments(app):
     db.init_app(app)
     migrate.init_app(app, db, compare_type=True)
+    csrf.init_app(app)
 
     login_manager.login_view = 'auth.login'
     login_manager.init_app(app)
