@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Reports{% endblock %}
+
+{% block content %}
+<dl class="row">
+    <dt class="col-sm-3">Автор:</dt>
+    <dd class="col-sm-9">
+        <a href="{{ url_for('user.user_details', user_id=report.author.id) }}">
+            {{ report.author.name }}
+        </a>
+    </dd>
+    <dt class="col-sm-3">Заглавие:</dt>
+    <dd class="col-sm-9">{{ report.title }}</dd>
+    <dt class="col-sm-3">Текст</dt>
+    <dd class="col-sm-9">{{ report.text }}</dd>
+</dl>
+{% endblock %}
