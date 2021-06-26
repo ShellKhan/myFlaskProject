@@ -36,11 +36,15 @@ def register_blueprints(app):
     from .blueprints.person import person
     from .blueprints.report import report
     from .blueprints.user import user
+    from .blueprints.author import author
+    from .blueprints.article import article
 
     app.register_blueprint(auth)
     app.register_blueprint(person)
     app.register_blueprint(report)
     app.register_blueprint(user)
+    app.register_blueprint(author)
+    app.register_blueprint(article)
 
 
 def register_commands(app):

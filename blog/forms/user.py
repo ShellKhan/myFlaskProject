@@ -7,7 +7,8 @@ class UserRegisterForm(FlaskForm):
         validators.DataRequired(),
         validators.Email(),
     ])
-    name = StringField('Имя')
+    firstname = StringField('Имя')
+    lastname = StringField('Фамилия')
     password = PasswordField('Пароль', [
         validators.DataRequired(),
         validators.Length(min=8),

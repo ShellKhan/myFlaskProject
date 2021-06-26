@@ -5,7 +5,6 @@ from werkzeug.security import generate_password_hash
 
 from blog.instruments import db
 from blog.models.user import User
-
 from blog.forms.user import UserRegisterForm
 
 user = Blueprint(
@@ -47,7 +46,8 @@ def register():
 
         _user = User(
             email=form.email.data,
-            name=form.name.data,
+            firstname=form.firstname.data,
+            lastname=form.lastname.data,
             password=generate_password_hash(form.password.data),
         )
 

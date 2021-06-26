@@ -3,7 +3,7 @@ from wtforms import validators, StringField, PasswordField, SubmitField
 
 
 class UserLoginForm(FlaskForm):
-    email = StringField('Login', [
+    email = StringField('E-mail', [
         validators.DataRequired(),
     ])
     password = PasswordField('Password', [
