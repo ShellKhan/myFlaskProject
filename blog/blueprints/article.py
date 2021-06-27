@@ -17,7 +17,7 @@ article = Blueprint(
 
 @article.route('/', methods=['GET'])
 def article_list():
-    articles: Article = Article.query.all()
+    articles = Article.query.all()
     return render_template(
         'articles/list.html',
         articles=articles,
@@ -26,7 +26,7 @@ def article_list():
 
 @article.route('/<int:article_id>/', methods=['GET'])
 def article_detail(article_id):
-    _article: Article = Article.query.filter_by(id=article_id).one_or_none()
+    _article = Article.query.filter_by(id=article_id).one_or_none()
     if _article is None:
         raise NotFound
     return render_template(
