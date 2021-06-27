@@ -35,18 +35,11 @@ def article_detail(article_id):
     )
 
 
-@article.route('/create/', methods=['GET'])
-@login_required
-def create_article_form():
-    form = CreateArticleForm(request.form)
-    return render_template('articles/create.html', form=form)
-
-
-@article.route('/', methods=['POST'])
+@article.route('/create/', methods=['GET', 'POST'])
 @login_required
 def create_article():
     form = CreateArticleForm(request.form)
-    if form.validate_on_submit():
+    if request.method == "POST" and form.validate_on_submit():
         _article = Article(title=form.title.data.strip(), text=form.text.data)
         if current_user.author:
             _article.author_id = current_user.author.id

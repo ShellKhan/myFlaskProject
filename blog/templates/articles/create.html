@@ -4,7 +4,7 @@
    Create article
  {% endblock %}
 
- {% block body %}
+ {% block content %}
    <h1>Create article</h1>
    <div>
      {% if error %}
@@ -15,7 +15,7 @@
      <form method="post">
        {{ form.csrf_token }}
 
-       {% for field_name in ['title', 'body'] %}
+       {% for field_name in ['title', 'text'] %}
        {% set field = form[field_name] %}
          <div class="my-3">
            {{ field.label(class="form-label") }}
