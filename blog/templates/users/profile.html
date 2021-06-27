@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}User profile{% endblock %}
+
+{% block content %}
+    <h1>{{ user.firstname }}</h1>
+    <h2>{{ user.lastname }}</h2>
+    <h4>{{ user.email }}</h4>
+    
+    {% if user.author %}
+    <h3>Author of article:</h3>
+    {% for article in user.author.articles %}
+        <ul>
+            <li>
+                <a href="{{ url_for('article.article_detail', article_id=article.id) }}">
+                    {{ article.title }}
+                </a>
+            </li>
+        </ul>
+    {% endfor %}
+    {% endif %}
+
+{% endblock %}

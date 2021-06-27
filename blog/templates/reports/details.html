@@ -6,7 +6,7 @@
 <dl class="row">
     <dt class="col-sm-3">Автор:</dt>
     <dd class="col-sm-9">
-        <a href="{{ url_for('user.user_details', user_id=report.author.id) }}">
+        <a href="{{ url_for('person.person_details', person_id=report.author.id) }}">
             {{ report.author.name }}
         </a>
     </dd>
