@@ -3,7 +3,7 @@ from sqlalchemy import ForeignKey
 from sqlalchemy.orm import relationship
 
 from blog.instruments import db
-from blog.models.tag import article_tag_association_table
+from blog.models.article_tag import article_tag_association_table
 
 
 class Article(db.Model):

@@ -1,7 +1,7 @@
-from sqlalchemy import ForeignKey, Table
 from sqlalchemy.orm import relationship
 
 from blog.instruments import db
+from blog.models.article_tag import article_tag_association_table
 
 
 class Tag(db.Model):
@@ -12,11 +12,3 @@ class Tag(db.Model):
         secondary=article_tag_association_table,
         back_populates="tags",
     )
-
-
-article_tag_association_table = Table(
-    "article_tag_association",
-    db.metadata,
-    db.Column("article_id", db.Integer, ForeignKey("article.id"), nullable=False),
-    db.Column("tag_id", db.Integer, ForeignKey("tag.id"), nullable=False),
-)
