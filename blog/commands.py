@@ -18,3 +18,20 @@ def create_init_user():
             )
         )
         db.session.commit()
+
+
+@click.command("create-tags")
+def create_tags():
+    from .models.tag import Tag
+    for name in [
+        "flask",
+        "django",
+        "python",
+        "sqlalchemy",
+        "news",
+        "gb",
+        "sqlite",
+    ]:
+        tag = Tag(name=name)
+        db.session.add(tag)
+    db.session.commit()
