@@ -3,9 +3,8 @@ from flask_login import login_required, current_user
 from werkzeug.exceptions import NotFound
 
 from blog.instruments import db
-from blog.forms.article import CreateArticleForm
-from blog.models.author import Author
-from blog.models.article import Article
+from blog.forms import CreateArticleForm
+from blog.models import Author, Article
 
 article = Blueprint(
     name='article',

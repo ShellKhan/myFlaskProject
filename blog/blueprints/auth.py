@@ -2,8 +2,8 @@ from flask import Blueprint, render_template, request, redirect, url_for
 from flask_login import logout_user, login_user, login_required, current_user
 from werkzeug.security import check_password_hash
 
-from blog.forms.auth import UserLoginForm
-from blog.models.user import User
+from blog.forms import UserLoginForm
+from blog.models import User
 
 auth = Blueprint(
     name='auth',

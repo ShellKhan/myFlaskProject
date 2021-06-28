@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template
 
-from blog.models.author import Author
+from blog.models import Author
 
 author = Blueprint(
     name='author',

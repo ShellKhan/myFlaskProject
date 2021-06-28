@@ -4,8 +4,8 @@ from werkzeug.exceptions import NotFound
 from werkzeug.security import generate_password_hash
 
 from blog.instruments import db
-from blog.models.user import User
-from blog.forms.user import UserRegisterForm
+from blog.models import User
+from blog.forms import UserRegisterForm
 
 user = Blueprint(
     name='user',

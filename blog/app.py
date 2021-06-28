@@ -1,6 +1,7 @@
 from flask import Flask, render_template
 from .instruments import db, login_manager, migrate, csrf
-from .models.user import User
+from .blueprints import auth, user, author, article
+from .models import User
 from . import commands
 
 
@@ -32,16 +33,7 @@ def register_instruments(app):
 
 
 def register_blueprints(app):
-    from .blueprints.auth import auth
-    from .blueprints.person import person
-    from .blueprints.report import report
-    from .blueprints.user import user
-    from .blueprints.author import author
-    from .blueprints.article import article
-
     app.register_blueprint(auth)
-    app.register_blueprint(person)
-    app.register_blueprint(report)
     app.register_blueprint(user)
     app.register_blueprint(author)
     app.register_blueprint(article)
@@ -49,3 +41,4 @@ def register_blueprints(app):
 
 def register_commands(app):
     app.cli.add_command(commands.create_init_user)
+    app.cli.add_command(commands.create_tags)
