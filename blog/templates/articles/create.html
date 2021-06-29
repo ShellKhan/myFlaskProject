@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% from 'macros/form.html' import render_field %}
 
  {% block title %}
    Create article
@@ -15,12 +16,8 @@
      <form method="post">
        {{ form.csrf_token }}
 
-       {% for field_name in ['title', 'text'] %}
-       {% set field = form[field_name] %}
-         <div class="my-3">
-           {{ field.label(class="form-label") }}
-           {{ field(class="form-control") }}
-         </div>
+       {% for field in ['title', 'text', 'tags'] %}
+          {{ render_field(form[field]) }}
        {% endfor %}
        {{ form.submit(class="btn btn-primary my-3") }}
      </form>

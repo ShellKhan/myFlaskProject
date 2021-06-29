@@ -10,5 +10,8 @@
    <div>
      <p>{{ article.text }}</p>
      <div>Published {{ article.created_at }}</div>
+       {% for tag in article.tags %}
+        <a href="{{ url_for('article.article_tag_list', tag_id=tag.id) }}">{{ tag.name }}</a><br>
+       {% endfor %}
    </div>
  {% endblock %}
