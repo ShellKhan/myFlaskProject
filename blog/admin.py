@@ -16,7 +16,7 @@ class MyAdminIndexView(AdminIndexView):
         return super().index()
 
 
-class CustomView(ModelView):
+class CustomAdminView(ModelView):
 
     def is_accessible(self):
         return current_user.is_authenticated and current_user.is_staff
@@ -24,8 +24,18 @@ class CustomView(ModelView):
     def inaccessible_callback(self, name, **kwargs):
         return redirect(url_for("auth.login"))
 
+    def create_blueprint(self, admin):
+        blueprint = super().create_blueprint(admin)
+        blueprint.name = f'{blueprint.name}_admin'
+        return blueprint
 
-class TagAdminView(CustomView):
+    def get_url(self, endpoint, **kwargs):
+        if not (endpoint.startswith('.') or endpoint.startswith('admin.')):
+            endpoint = endpoint.replace('.', '_admin.')
+        return super().get_url(endpoint, **kwargs)
+
+
+class TagAdminView(CustomAdminView):
     column_searchable_list = ("name",)
     column_filters = ("name",)
     can_export = True
@@ -34,7 +44,7 @@ class TagAdminView(CustomView):
     edit_modal = True
 
 
-class UserAdminView(CustomView):
+class UserAdminView(CustomAdminView):
     column_exclude_list = ("password",)
     column_searchable_list = ("firstname", "lastname", "is_staff", "email")
     column_filters = ("firstname", "lastname", "is_staff", "email")
@@ -44,6 +54,14 @@ class UserAdminView(CustomView):
     can_delete = False
 
 
+class ArticleAdminView(CustomAdminView):
+    can_export = True
+    export_types = ('csv', 'xlsx')
+    column_filters = ('author_id',)
+
+
 admin = Admin(name="Blog Admin", index_view=MyAdminIndexView(), template_mode="bootstrap4")
 
-admin.add_view(TagAdminView(models.Tag, db.session, category="Models"))
+admin.add_view(CustomAdminView(models.Article, db.session, category='Models'))
+admin.add_view(TagAdminView(models.Tag, db.session, category='Models'))
+admin.add_view(UserAdminView(models.User, db.session, category='Models'))

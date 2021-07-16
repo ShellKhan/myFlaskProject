@@ -14,4 +14,4 @@ class Author(db.Model):
     articles = relationship('Article', back_populates='author')
 
     def __str__(self):
-        return self.user.username
+        return self.user.firstname
