@@ -3,7 +3,7 @@ from sqlalchemy import ForeignKey
 from sqlalchemy.orm import relationship
 
 from blog.instruments import db
-from blog.models.article_tag import article_tag_association_table
+from .article_tag import article_tag_association_table
 
 
 class Article(db.Model):
@@ -18,3 +18,6 @@ class Article(db.Model):
 
     author = relationship('Author', back_populates='articles')
     tags = relationship("Tag", secondary=article_tag_association_table, back_populates="articles")
+
+    def __str__(self):
+        return self.title

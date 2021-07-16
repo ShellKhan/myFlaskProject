@@ -1,4 +1,6 @@
 from flask import Flask, render_template
+
+from .admin import admin
 from .instruments import db, login_manager, migrate, csrf
 from .blueprints import auth, user, author, article
 from .models import User
@@ -23,6 +25,7 @@ def register_instruments(app):
     db.init_app(app)
     migrate.init_app(app, db, compare_type=True)
     csrf.init_app(app)
+    admin.init_app(app)
 
     login_manager.login_view = 'auth.login'
     login_manager.init_app(app)
