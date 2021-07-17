@@ -10,4 +10,3 @@ class TagSchema(Schema):
 
     id = fields.Integer(as_string=True)
     name = fields.String(allow_none=False, required=True)
-
