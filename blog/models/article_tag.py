@@ -1,6 +1,6 @@
 from sqlalchemy import Table, ForeignKey
 
-from blog.instruments import db
+from ..instruments import db
 
 article_tag_association_table = Table(
     "article_tag_association",

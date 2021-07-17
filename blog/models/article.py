@@ -2,8 +2,8 @@ from datetime import datetime
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import relationship
 
-from blog.instruments import db
 from .article_tag import article_tag_association_table
+from ..instruments import db
 
 
 class Article(db.Model):

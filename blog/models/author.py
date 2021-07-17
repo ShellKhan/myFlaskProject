@@ -1,7 +1,7 @@
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import relationship
 
-from blog.instruments import db
+from ..instruments import db
 
 
 class Author(db.Model):
@@ -14,4 +14,4 @@ class Author(db.Model):
     articles = relationship('Article', back_populates='author')
 
     def __str__(self):
-        return self.user.username
+        return f'{self.user.firstname} {self.user.lastname}'

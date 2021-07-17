@@ -3,9 +3,9 @@ from flask_login import login_required, current_user, login_user
 from werkzeug.exceptions import NotFound
 from werkzeug.security import generate_password_hash
 
-from blog.instruments import db
-from blog.models import User
-from blog.forms import UserRegisterForm
+from ..instruments import db
+from ..models import User
+from ..forms import UserRegisterForm
 
 user = Blueprint(
     name='user',

@@ -3,9 +3,9 @@ from flask_login import login_required, current_user
 from sqlalchemy.orm import joinedload
 from werkzeug.exceptions import NotFound
 
-from blog.instruments import db
-from blog.forms import CreateArticleForm
-from blog.models import Author, Article, Tag
+from ..instruments import db
+from ..forms import CreateArticleForm
+from ..models import Author, Article, Tag
 
 article = Blueprint(
     name='article',

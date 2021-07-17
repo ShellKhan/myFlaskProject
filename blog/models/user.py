@@ -2,7 +2,7 @@ from flask_login import UserMixin
 from sqlalchemy.orm import relationship
 from werkzeug.security import check_password_hash
 
-from blog.instruments import db
+from ..instruments import db
 
 
 class User(db.Model, UserMixin):

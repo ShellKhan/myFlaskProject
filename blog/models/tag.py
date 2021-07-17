@@ -1,7 +1,7 @@
 from sqlalchemy.orm import relationship
 
-from blog.instruments import db
-from blog.models.article_tag import article_tag_association_table
+from ..instruments import db
+from .article_tag import article_tag_association_table
 
 
 class Tag(db.Model):
