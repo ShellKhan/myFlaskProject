@@ -12,7 +12,6 @@ class UserSchema(Schema):
     id = fields.Integer(as_string=True)
     first_name = fields.String(allow_none=False)
     last_name = fields.String(allow_none=False)
-    username = fields.String(allow_none=False)
     email = fields.String(allow_none=False)
     is_staff = fields.Boolean(allow_none=False)
 
