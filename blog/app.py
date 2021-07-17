@@ -1,8 +1,9 @@
 from combojsonapi.spec import ApiSpecPlugin
 from flask import Flask, render_template
+from flask_combo_jsonapi import Api
 
 from .admin import admin
-from .api import api
+from .api import TagList, TagDetail, UserList, UserDetail, AuthorList, AuthorDetail, ArticleList, ArticleDetail
 from .instruments import db, login_manager, migrate, csrf
 from .blueprints import auth, user, author, article
 from .models import User
@@ -20,6 +21,7 @@ def create_app() -> Flask:
     register_instruments(app)
     register_blueprints(app)
     register_commands(app)
+    register_api(app)
     return app
 
 
@@ -28,15 +30,6 @@ def register_instruments(app):
     migrate.init_app(app, db, compare_type=True)
     csrf.init_app(app)
     admin.init_app(app)
-
-    api_spec_plugin = ApiSpecPlugin(app, tags={
-        "Tag": "Tag API",
-        "User": "User API",
-        "Author": "Author API",
-        "Article": "Article API",
-    })
-    api.init_app(app)
-    api.plugins.append(api_spec_plugin)
 
     login_manager.login_view = 'auth.login'
     login_manager.init_app(app)
@@ -56,3 +49,23 @@ def register_blueprints(app):
 def register_commands(app):
     app.cli.add_command(commands.create_init_user)
     app.cli.add_command(commands.create_tags)
+
+
+def register_api(app):
+    api_spec_plugin = ApiSpecPlugin(app=app, tags={
+        "Tag": "Tag API",
+        "User": "User API",
+        "Author": "Author API",
+        "Article": "Article API",
+    })
+    api = Api(app=app, plugins=[
+        api_spec_plugin,
+    ])
+    api.route(TagList, "tag_list", "/api/tags/", tag="Tag")
+    api.route(TagDetail, "tag_detail", "/api/tags/<int:id>/", tag="Tag")
+    api.route(UserList, "user_list", "/api/users/", tag="User")
+    api.route(UserDetail, "user_detail", "/api/users/<int:id>/", tag="User")
+    api.route(AuthorList, "author_list", "/api/authors/", tag="Author")
+    api.route(AuthorDetail, "author_detail", "/api/authors/<int:id>/", tag="Author")
+    api.route(ArticleList, "article_list", "/api/articles/", tag="Article")
+    api.route(ArticleDetail, "article_detail", "/api/articles/<int:id>/", tag="Article")
