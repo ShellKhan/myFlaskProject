@@ -1,3 +1,5 @@
+from combojsonapi.event import EventPlugin
+from combojsonapi.permission import PermissionPlugin
 from combojsonapi.spec import ApiSpecPlugin
 from flask import Flask, render_template
 from flask_combo_jsonapi import Api
@@ -52,14 +54,15 @@ def register_commands(app):
 
 
 def register_api(app):
-    api_spec_plugin = ApiSpecPlugin(app=app, tags={
-        "Tag": "Tag API",
-        "User": "User API",
-        "Author": "Author API",
-        "Article": "Article API",
-    })
     api = Api(app=app, plugins=[
-        api_spec_plugin,
+        EventPlugin(),
+        PermissionPlugin(),
+        ApiSpecPlugin(app=app, tags={
+            "Tag": "Tag API",
+            "User": "User API",
+            "Author": "Author API",
+            "Article": "Article API",
+        }),
     ])
     api.route(TagList, "tag_list", "/api/tags/", tag="Tag")
     api.route(TagDetail, "tag_detail", "/api/tags/<int:id>/", tag="Tag")
