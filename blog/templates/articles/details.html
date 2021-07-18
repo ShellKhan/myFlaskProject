@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+ {% block title %}
+   Article #{{ article.id }}: {{ article.title }}
+ {% endblock %}
+
+ {% block content %}
+   <h1>{{ article.title }}</h1>
+   <h2>{{ article.author.user.firstname }} {{ article.author.user.lastname }}</h2>
+   <div>
+     <p>{{ article.text }}</p>
+     <div>Published {{ article.created_at }}</div>
+       {% for tag in article.tags %}
+        <a href="{{ url_for('article.article_tag_list', tag_id=tag.id) }}">{{ tag.name }}</a><br>
+       {% endfor %}
+   </div>
+ {% endblock %}
