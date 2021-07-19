@@ -10,8 +10,8 @@ class UserSchema(Schema):
         self_view_many = "user_list"
 
     id = fields.Integer(as_string=True)
-    first_name = fields.String(allow_none=False)
-    last_name = fields.String(allow_none=False)
+    firstname = fields.String()
+    lastname = fields.String()
     email = fields.String(allow_none=False)
     is_staff = fields.Boolean(allow_none=False)
 

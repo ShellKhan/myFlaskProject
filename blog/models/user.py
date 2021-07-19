@@ -12,7 +12,7 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(255), unique=True, nullable=False)
     firstname = db.Column(db.String(255))
     lastname = db.Column(db.String(255))
-    password = db.Column(db.String(255), unique=True, nullable=False)
+    password = db.Column(db.String(255), nullable=False)
     is_staff = db.Column(db.Boolean, nullable=False, default=False)
 
     author = relationship('Author', uselist=False, back_populates='user')
