@@ -43,9 +43,18 @@ class TagAdminView(CustomAdminView):
 
 class UserAdminView(CustomAdminView):
     column_exclude_list = ("password",)
+    column_details_exclude_list = ('password',)
+    column_export_exclude_list = ('password',)
     column_searchable_list = ("firstname", "lastname", "is_staff", "email")
     column_filters = ("firstname", "lastname", "is_staff", "email")
     column_editable_list = ("firstname", "lastname", "is_staff")
+    form_columns = ('firstname', 'lastname', 'is_staff')
     can_create = True
     can_edit = True
     can_delete = False
+
+
+class ArticleAdminView(CustomAdminView):
+    can_export = True
+    export_types = ('csv', 'xlsx')
+    column_filters = ('author_id',)

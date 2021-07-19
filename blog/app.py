@@ -4,8 +4,9 @@ from combojsonapi.spec import ApiSpecPlugin
 from flask import Flask, render_template
 
 from .admin import admin
+# from .api.views import api_blueprint
 from .instruments import db, login_manager, migrate, csrf, api
-from .blueprints import auth, user, author, article, api_blueprint
+from .blueprints import auth, user, author, article
 from .models import User
 from . import commands
 
@@ -58,7 +59,7 @@ def register_blueprints(app):
     app.register_blueprint(user)
     app.register_blueprint(author)
     app.register_blueprint(article)
-    app.register_blueprint(api_blueprint)
+    # app.register_blueprint(api_blueprint)
 
 
 def register_commands(app):
