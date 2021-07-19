@@ -22,7 +22,7 @@ def create_app() -> Flask:
     register_instruments(app)
     register_blueprints(app)
     register_commands(app)
-    register_api(app)
+    register_api()
     return app
 
 
@@ -67,7 +67,7 @@ def register_commands(app):
     app.cli.add_command(commands.create_tags)
 
 
-def register_api(app):
+def register_api():
     api.route(TagList, "tag_list", "/api/tags/", tag="Tag")
     api.route(TagDetail, "tag_detail", "/api/tags/<int:id>/", tag="Tag")
     api.route(UserList, "user_list", "/api/users/", tag="User")
