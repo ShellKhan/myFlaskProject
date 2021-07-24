@@ -5,6 +5,7 @@ from combojsonapi.permission import PermissionPlugin
 
 from .admin import admin
 from .api import TagList, TagDetail, UserList, UserDetail, AuthorList, AuthorDetail, ArticleList, ArticleDetail
+from .api.views import api_blueprint
 from .instruments import db, login_manager, migrate, csrf, api
 from .blueprints import auth, user, author, article
 from .models import User
@@ -22,7 +23,6 @@ def create_app() -> Flask:
     register_instruments(app)
     register_blueprints(app)
     register_commands(app)
-    register_api()
     return app
 
 
@@ -45,7 +45,8 @@ def register_instruments(app):
             }
         ),
     ]
-    api.init_app(app)
+    api.init_app(app, blueprint=api_blueprint)
+    register_api()
 
     login_manager.login_view = 'auth.login'
     login_manager.init_app(app)
@@ -60,6 +61,7 @@ def register_blueprints(app):
     app.register_blueprint(user)
     app.register_blueprint(author)
     app.register_blueprint(article)
+    app.register_blueprint(api_blueprint)
 
 
 def register_commands(app):

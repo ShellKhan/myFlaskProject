@@ -24,6 +24,7 @@ python-dateutil==2.8.1
 python-dotenv==0.17.1
 python-editor==1.0.4
 PyYAML==5.4.1
+requests==2.26.0
 simplejson==3.17.3
 six==1.16.0
 SQLAlchemy==1.4.15
