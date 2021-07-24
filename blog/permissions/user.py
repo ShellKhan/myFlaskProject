@@ -5,7 +5,7 @@ from flask_login import current_user
 from ..models import User
 
 
-class UserListPermission(PermissionMixin):
+class UserPermission(PermissionMixin):
     ALL_AVAILABLE_FIELDS = (
         'id',
         'email',
@@ -33,4 +33,4 @@ class UserPatchPermission(PermissionMixin):
 
     def patch_data(self, *args, data=None, obj=None, user_permission: PermissionUser = None, **kwargs) -> dict:
         permission_for_patch = user_permission.permission_for_patch_permission(model=User)
-        return {k:v for k, v in data.items() if k in permission_for_patch.columns}
+        return {k: v for k, v in data.items() if k in permission_for_patch.columns}

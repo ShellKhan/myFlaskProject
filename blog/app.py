@@ -5,7 +5,6 @@ from combojsonapi.permission import PermissionPlugin
 
 from .admin import admin
 from .api import TagList, TagDetail, UserList, UserDetail, AuthorList, AuthorDetail, ArticleList, ArticleDetail
-from .api.views import api_blueprint
 from .instruments import db, login_manager, migrate, csrf, api
 from .blueprints import auth, user, author, article
 from .models import User
@@ -34,7 +33,7 @@ def register_instruments(app):
 
     api.plugins = [
         EventPlugin(),
-        PermissionPlugin(),
+        PermissionPlugin(strict=False),
         ApiSpecPlugin(
             app=app,
             tags={
@@ -45,7 +44,7 @@ def register_instruments(app):
             }
         ),
     ]
-    api.init_app(app, blueprint=api_blueprint)
+    api.init_app(app)
     register_api()
 
     login_manager.login_view = 'auth.login'
@@ -61,7 +60,6 @@ def register_blueprints(app):
     app.register_blueprint(user)
     app.register_blueprint(author)
     app.register_blueprint(article)
-    app.register_blueprint(api_blueprint)
 
 
 def register_commands(app):
