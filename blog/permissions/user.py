@@ -28,6 +28,8 @@ class UserPatchPermission(PermissionMixin):
     )
 
     def patch_permission(self, *args, user_permission: PermissionUser = None, **kwargs) -> PermissionForPatch:
+        if not current_user.is_staff:
+            raise AccessDenied('No access')
         self.permission_for_patch.allow_columns = (self.PATCH_AVAILABLE_FIELDS, 10)
         return self.permission_for_patch
 
