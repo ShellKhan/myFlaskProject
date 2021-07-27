@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Articles list
+{% endblock %}
+
+ {% block content %}
+    <h1>Articles list</h1>
+    <h2>Всего {{ count_articles.count }}</h2>
+{% if tag %}
+    <p>{{ tag.name }}</p>
+{% endif %}
+    <div>
+        <ul>
+          {% for article in articles %}
+            <li>
+              <a href="{{ url_for('article.article_detail', article_id=article.id) }}">{{ article.title }}</a>
+               by {{ article.author.user.firstname }}
+            </li>
+          {% endfor %}
+        </ul>
+        <hr>
+        <a href="{{ url_for('article.create_article') }}">Create new</a>
+    </div>
+ {% endblock %}
+
+
