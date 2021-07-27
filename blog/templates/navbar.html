@@ -7,12 +7,28 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                {% for (endpoint, label) in [('user.user_list', 'Users'), ('report.report_list', 'Reports')] %}
+                {% for (endpoint, label) in [
+                    ('user.user_list', 'Users'),
+                    ('author.author_list', 'Authors'),
+                    ('article.article_list', 'Articles')
+                ] %}
                     <a href="{{ url_for(endpoint) }}"
-                       class="nav-link {% if request.endpoint == endpoint -%}active{%- endif %}">
+                       class="nav-link {% if request.endpoint == endpoint %}active{% endif %}">
                         {{ label }}
                     </a>
                 {% endfor %}
+                <a href="/api/docs" class="nav-link">Swagger</a>
+                {% if current_user.is_authenticated %}
+                    <a class="nav-link" href="{{ url_for('article.create_article') }}">Create article</a>
+                    <a class="nav-link" href="{{ url_for('auth.logout') }}">Logout ({{ current_user.email }})</a>
+                {% else %}
+                    {% for (endpoint, label) in [('auth.login', 'Log in'), ('user.register', 'Register')] %}
+                        <a href="{{ url_for(endpoint) }}"
+                           class="nav-link {% if request.endpoint == endpoint %}active{% endif %}">
+                            {{ label }}
+                        </a>
+                    {% endfor %}
+                {% endif %}
             </div>
         </div>
     </div>

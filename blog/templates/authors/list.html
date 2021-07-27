@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Authors list
+{% endblock %}
+
+{% block content %}
+  <h1>Authors</h1>
+  <div>
+    {% if authors %}
+      <ul>
+        {% for author in authors %}
+          <li>
+            #{{ author.id }} ({{ author.user.firstname }} {{ author.user.lastname }})
+            <a href="{{ url_for('user.profile', pk=author.user.id) }}">
+               {{ author.user.email }}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <h3>No authors yet</h3>
+    {% endif %}
+  </div>
+{% endblock %}
