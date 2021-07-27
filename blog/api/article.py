@@ -3,6 +3,7 @@ from flask_combo_jsonapi import ResourceDetail, ResourceList
 
 from ..instruments import db
 from ..models import Article
+from ..permissions.article import ArticlePermission
 from ..schemas import ArticleSchema
 
 
@@ -33,4 +34,5 @@ class ArticleDetail(ResourceDetail):
     data_layer = {
         'session': db.session,
         'model': Article,
+        'permission_patch': [ArticlePermission],
     }
