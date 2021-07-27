@@ -1,3 +1,4 @@
+import requests
 from flask import Blueprint, render_template, request, redirect, url_for
 from flask_login import login_required, current_user
 from sqlalchemy.orm import joinedload
@@ -18,9 +19,11 @@ article = Blueprint(
 @article.route('/', methods=['GET'])
 def article_list():
     articles = Article.query.all()
+    count_articles = requests.get('http://localhost:5000/api/articles/event_get_count/').json()
     return render_template(
         'articles/list.html',
         articles=articles,
+        count_articles=count_articles,
     )
 
 
