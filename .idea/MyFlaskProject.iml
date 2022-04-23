@@ -2,6 +2,7 @@
 <module type="PYTHON_MODULE" version="4">
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/blog/static" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/blog/templates" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/venv" />
       <excludeFolder url="file://$MODULE_DIR$/bootstrap" />
@@ -12,7 +13,7 @@
   <component name="PyNamespacePackagesService">
     <option name="namespacePackageFolders">
       <list>
-        <option value="$MODULE_DIR$/blog/user" />
+        <option value="$MODULE_DIR$/blog/blueprints" />
       </list>
     </option>
   </component>

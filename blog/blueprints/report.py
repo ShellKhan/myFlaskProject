@@ -7,7 +7,7 @@ report = Blueprint(
     static_folder="../static",
     url_prefix="/reports",
 )
-ARTICLES = [
+REPORTS = [
     {
         "id": 1,
         "title": "Доктор Ноу (1962)",
@@ -56,17 +56,16 @@ ARTICLES = [
 ]
 
 
-# роут по урлу "/reports/..."
 @report.route("/")
 def report_list():
-    return render_template("reports/list.html", reports=ARTICLES)
+    return render_template("reports/list.html", reports=REPORTS)
 
 
 @report.route("/<int:report_id>/")
 def report_details(report_id: int):
-    for article in ARTICLES:
-        if report_id == article["id"]:
-            this_report = article
+    for report in REPORTS:
+        if report_id == report["id"]:
+            this_report = report
             return render_template("reports/details.html", report=this_report)
     else:
-        raise NotFound("Нет такой статьи!")
+        raise NotFound("Нет такого отчета!")
