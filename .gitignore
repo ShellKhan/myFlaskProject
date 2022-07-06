@@ -226,3 +226,4 @@ pyvenv.cfg
 pip-selfcheck.json
 
 /bootstrap/
+/blog/db.sqlite
